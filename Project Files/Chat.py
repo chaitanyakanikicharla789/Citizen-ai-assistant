@@ -3,65 +3,46 @@ import json
 import os
 from ibm_ai import get_watsonx_response, analyze_sentiment
 
-def chat_page():
-    st.title("🧠 Citizen Chat Assistant")
-
-    # Load predefined issues
+def load_predefined_issues():
     try:
-        with open("predefined_issues.json", "r", encoding="utf-8") as f:
-            predefined = json.load(f)
+        # Safe path to load JSON file
+        file_path = os.path.join(os.path.dirname(__file__), "predefined_issues.json")
+        with open(file_path, "r") as f:
+            return json.load(f)["issues"]
     except FileNotFoundError:
         st.error("❌ predefined_issues.json file not found!")
-        return
+        return []
+    except json.JSONDecodeError:
+        st.error("❌ Error decoding predefined_issues.json. Check its format!")
+        return []
 
-    # Load chat history
-    data = {"sentiments": []}
-    if os.path.exists("data.json"):
-        with open("data.json", "r", encoding="utf-8") as f:
-            try:
-                data = json.load(f)
-            except json.JSONDecodeError:
-                st.warning("⚠️ data.json is corrupted. Starting fresh.")
+def chat_page():
+    st.title("🧠 Citizen Chat Assistant")
+    st.write("Ask any civic question or report an issue:")
 
-    # UI input
-    user_input = st.text_input("💬 Ask the Assistant:")
+    predefined_issues = load_predefined_issues()
+
+    user_input = st.text_input("💬 Enter your question or issue")
 
     if st.button("Submit"):
-        if user_input.strip():
-            question = user_input.strip()
-            answer = None
-
-            # Check predefined answers
-            for item in predefined.get("issues", []):
-                if item["question"].lower() in question.lower():
-                    answer = item["answer"]
+        if user_input.strip() == "":
+            st.warning("⚠️ Please enter a question.")
+        else:
+            # Check for match in predefined issues
+            matched = False
+            for item in predefined_issues:
+                if item["query"].lower() in user_input.lower():
+                    st.success("✅ Predefined Response:")
+                    st.write(item["response"])
+                    matched = True
                     break
 
-            # If not in predefined, use Watsonx
-            if not answer:
-                answer = get_watsonx_response(question)
+            if not matched:
+                # Use Watsonx fallback
+                response = get_watsonx_response(user_input)
+                sentiment = analyze_sentiment(user_input)
 
-            # Analyze sentiment
-            sentiment = analyze_sentiment(question)
+                st.success("🤖 AI Response:")
+                st.write(response)
 
-            # Save entry
-            entry = {"question": question, "answer": answer, "sentiment": sentiment}
-            data["sentiments"].append(entry)
-
-            with open("data.json", "w", encoding="utf-8") as f:
-                json.dump(data, f, indent=4)
-
-            # Display output
-            st.success("✅ Response received!")
-            st.markdown(f"**Answer:** {answer}")
-            st.markdown(f"🧭 Sentiment: **{sentiment}**")
-        else:
-            st.warning("⚠️ Please fill out this field before submitting.")
-
-    # Show recent chats
-    st.subheader("🕓 Recent Questions")
-    if data["sentiments"]:
-        for entry in reversed(data["sentiments"][-3:]):
-            st.markdown(f"**Q:** {entry['question']}  \n**A:** {entry['answer']}  \n_Sentiment: {entry['sentiment']}_")
-    else:
-        st.info("No chat history yet.")
+                st.info(f"📊 Sentiment: {sentiment}")
