@@ -1,0 +1,136 @@
+{
+    "sentiments": [
+        {
+            "question": "\"how to apply for aadhar",
+            "answer": "Visit your nearest Aadhaar Seva Kendra or apply online at uidai.gov.in.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "how to file an RTI",
+            "answer": "You can file an RTI online at rtionline.gov.in or submit a handwritten application to the concerned department.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "what is ayushman bharat scheme",
+            "answer": "Ayushman Bharat provides free health coverage up to \u20b95 lakh per family per year.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "electricity bill complaint",
+            "answer": "\n\nSubject: Urgent Attention Required - Discrepancy in Electricity Bill for [Your Address]\n\nDear [Energy Provider's Customer Service],\n\nI hope this message finds you well. I am writing to bring to your attention a significant discrepancy in my recent electricity bill for the period of [Start Date] to [End Date].\n\nUpon reviewing my bill, I noticed that the total consumption recorded is [Total Consumption in",
+            "sentiment": "Negative"
+        },
+        {
+            "question": "how to link aadhar with mobile",
+            "answer": "Visit your telecom provider's store or use their online service to link Aadhaar with mobile.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "who is the president of india",
+            "answer": "As of 2024, the President of India is Droupadi Murmu.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "how to register a civic complaint",
+            "answer": "Use this chatbot to report issues or visit your local municipal corporation site.",
+            "sentiment": "Negative"
+        },
+        {
+            "question": "who is the pm of india",
+            "answer": "\n\nThe Prime Minister of India is Narendra Modi. He has been in office since May 2014.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "where is vijayawada located?",
+            "answer": "\n\nVijayawada is a city located in the Indian state of Andhra Pradesh. It is situated approximately 200 kilometers (124 miles) north of the state capital, Amaravati, and about 150 kilometers (93 miles) south of the city of Visakhapatnam. Vijayawada is a significant urban center in the region, known for its historical land",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "where is vijayawada located?",
+            "answer": "\n\nVijayawada is a city located in the Indian state of Andhra Pradesh. It is situated approximately 200 kilometers (124 miles) north of the state capital, Amaravati, and about 150 kilometers (93 miles) south of the city of Visakhapatnam. Vijayawada is a significant urban center in the region, known for its historical land",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "who is the pm of india",
+            "answer": "Error: 'results'",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "it is very good response",
+            "answer": "",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "who is the pm of india",
+            "answer": "Error: 'results'",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "who is the pm of india",
+            "answer": "Request error: 401 Client Error: Unauthorized for url: https://eu-de.ml.cloud.ibm.com/ml/v1/text/generation?version=2024-05-01",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "what is swachh bharat",
+            "answer": "Swachh Bharat is a nationwide cleanliness campaign launched by the Indian government.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "who is the president of india",
+            "answer": "As of 2024, the President of India is Droupadi Murmu.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "who is the prime minister of india",
+            "answer": "The current Prime Minister of India is Narendra Modi.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "GOOD RESPONSE",
+            "answer": "",
+            "sentiment": "Positive"
+        },
+        {
+            "question": "\"how to report garbage issue",
+            "answer": "You can report garbage issues through your municipal website or this app's chat.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "\"how to report garbage issue",
+            "answer": "You can report garbage issues through your municipal website or this app's chat.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "very very good response",
+            "answer": "",
+            "sentiment": "Positive"
+        },
+        {
+            "question": "\"how to report garbage issue",
+            "answer": "You can report garbage issues through your municipal website or this app's chat.",
+            "sentiment": "Neutral"
+        },
+        {
+            "question": "very very nice",
+            "answer": "",
+            "sentiment": "Positive"
+        }
+    ],
+    "issues": [
+        "Drainage issue in my colony",
+        "Streetlight not working in my area",
+        "Frequent power cuts in my colony",
+        "Mosquito breeding due to stagnant water",
+        "Roadside vendor blocking the footpath",
+        "Frequent power cuts in my colony",
+        "Streetlight not working near my house",
+        "Streetlight not working near my house",
+        "thanks",
+        "thanks",
+        "it is very good response",
+        "\"Lack of drinking water in public places",
+        "\"Roadside vendor blocking the footpath",
+        "\"Uncollected construction debris on footpath",
+        "Lack of drinking water in public places"
+    ]
+}
