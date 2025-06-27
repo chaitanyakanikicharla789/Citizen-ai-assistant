@@ -1,4 +1,0 @@
-streamlit
-ibm-watsonx-ai
-requests
-textblob
