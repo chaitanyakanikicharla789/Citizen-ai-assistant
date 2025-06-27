@@ -49,4 +49,7 @@ Live GPS-based Issue Mapping
 <img width="953" alt="image" src="https://github.com/user-attachments/assets/5eaa6e1b-4267-42b2-a574-1acc3ad06910" />
 
 
+streamlit app link:https://citizen-ai-assistant-3by3hvvkfvpmgxbfkucuvv.streamlit.app/
+
+
 
