@@ -3,46 +3,61 @@ import json
 import os
 from ibm_ai import get_watsonx_response, analyze_sentiment
 
+# ✅ Load issues from JSON file
 def load_predefined_issues():
     try:
-        # Safe path to load JSON file
         file_path = os.path.join(os.path.dirname(__file__), "predefined_issues.json")
-        with open(file_path, "r") as f:
-            return json.load(f)["issues"]
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f).get("issues", [])
     except FileNotFoundError:
-        st.error("❌ predefined_issues.json file not found!")
+        st.error("❌ 'predefined_issues.json' file not found.")
         return []
     except json.JSONDecodeError:
-        st.error("❌ Error decoding predefined_issues.json. Check its format!")
+        st.error("❌ Error parsing 'predefined_issues.json'. Check format!")
         return []
 
+# ✅ Match query to predefined issue
+def match_predefined(query, issues):
+    query = query.strip().lower()
+    for item in issues:
+        if item["query"].strip().lower() in query:
+            return item["response"]
+    return None
+
+# ✅ Main Chat UI
 def chat_page():
     st.title("🧠 Citizen Chat Assistant")
-    st.write("Ask any civic question or report an issue:")
-
-    predefined_issues = load_predefined_issues()
+    st.markdown("Ask any civic question or report an issue:")
 
     user_input = st.text_input("💬 Enter your question or issue")
 
-    if st.button("Submit"):
-        if user_input.strip() == "":
-            st.warning("⚠️ Please enter a question.")
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+
+    if user_input:
+        issues = load_predefined_issues()
+        predefined_response = match_predefined(user_input, issues)
+
+        if predefined_response:
+            ai_response = predefined_response
+            source = "Predefined"
         else:
-            # Check for match in predefined issues
-            matched = False
-            for item in predefined_issues:
-                if item["query"].lower() in user_input.lower():
-                    st.success("✅ Predefined Response:")
-                    st.write(item["response"])
-                    matched = True
-                    break
+            ai_response = get_watsonx_response(user_input)
+            source = "Watsonx AI"
 
-            if not matched:
-                # Use Watsonx fallback
-                response = get_watsonx_response(user_input)
-                sentiment = analyze_sentiment(user_input)
+        sentiment = analyze_sentiment(user_input)
 
-                st.success("🤖 AI Response:")
-                st.write(response)
+        # Store in chat history
+        st.session_state.chat_history.append({
+            "query": user_input,
+            "response": ai_response,
+            "sentiment": sentiment,
+            "source": source
+        })
 
-                st.info(f"📊 Sentiment: {sentiment}")
+    # ✅ Display full chat history
+    for chat in reversed(st.session_state.chat_history):
+        st.markdown(f"**🧑‍💬 You:** {chat['query']}")
+        st.markdown(f"**🤖 {chat['source']} Response:** {chat['response']}")
+        st.markdown(f"**📊 Sentiment:** {chat['sentiment']}")
+        st.markdown("---")
