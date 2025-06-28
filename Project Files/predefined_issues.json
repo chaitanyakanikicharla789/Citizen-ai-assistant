@@ -1,44 +1,68 @@
 {
   "issues": [
     {
-      "query": "Who is the current Prime Minister of India?",
-      "response": "The current Prime Minister of India is Narendra Modi."
+      "query": "Who is the Deputy Chief Minister of Andhra Pradesh?",
+      "response": "The current Deputy Chief Minister of Andhra Pradesh is **Pawan Kalyan**. He assumed office in June 2024 as part of the NDA government."
     },
     {
-      "query": "How to apply for Aadhar",
-      "response": "To apply for Aadhar, visit the nearest Aadhaar Seva Kendra or book an appointment online at https://uidai.gov.in."
+      "query": "Who is the Chief Minister of Andhra Pradesh?",
+      "response": "The current Chief Minister of Andhra Pradesh is **N. Chandrababu Naidu**, leading the NDA alliance since June 2024."
     },
     {
-      "query": "How can I report a pothole?",
-      "response": "You can report a pothole using your city's municipal app or contact the local civic body helpline."
+      "query": "Current ministers in Andhra Pradesh?",
+      "response": "Key AP Ministers (2025):\n- CM: N. Chandrababu Naidu\n- Deputy CM: Pawan Kalyan\n- IT & Education: Nara Lokesh\n- Agriculture: K. Atchannaidu"
+    },
+    {
+      "query": "Latest government schemes in Andhra Pradesh?",
+      "response": "**Latest AP Schemes (2025):**\n- Annadata Sukhibhava 2.0\n- NTR Bharosa Pension Scheme\n- AP SkillConnect\n- Jana Vikasam (Rural Housing)"
+    },
+    {
+      "query": "How to report a pothole?",
+      "response": "You can report potholes via the **Spandana Portal (https://spandana.ap.gov.in)** or call 1100 for helpline support."
+    },
+    {
+      "query": "Who is the Prime Minister of India?",
+      "response": "The current Prime Minister of India is **Narendra Modi**."
+    },
+    {
+      "query": "How to apply for Aadhar?",
+      "response": "You can apply for Aadhaar at your nearest Aadhaar Seva Kendra or book online at https://uidai.gov.in."
     },
     {
       "query": "What is PM-Kisan scheme?",
-      "response": "The PM-Kisan scheme provides ₹6,000 per year to eligible farmers. Check details at https://pmkisan.gov.in."
+      "response": "PM-Kisan offers ₹6,000 annually to eligible farmers. More info at https://pmkisan.gov.in."
     },
     {
       "query": "Who is the Chief Minister of Telangana?",
-      "response": "As of 2024, the Chief Minister of Telangana is Revanth Reddy."
+      "response": "As of 2024, the CM of Telangana is **Revanth Reddy**."
     },
     {
-      "query": "Where can I file a complaint against garbage collection?",
-      "response": "You can use the Swachhata App or contact your local municipal corporation for garbage collection issues."
+      "query": "Where to complain about garbage collection?",
+      "response": "Use the **Swachhata App** or contact your local municipality to report garbage issues."
     },
     {
       "query": "How to get a voter ID?",
-      "response": "Apply for a voter ID online at https://voters.eci.gov.in or visit the nearest electoral office."
+      "response": "Apply for a Voter ID online at https://voters.eci.gov.in or visit the nearest election office."
     },
     {
       "query": "What is Digital India program?",
-      "response": "Digital India is a government initiative to promote digital services, digital literacy, and online infrastructure."
+      "response": "**Digital India** is a central initiative to boost digital literacy, e-Governance, and internet access."
     },
     {
-      "query": "How to check my electricity bill?",
-      "response": "Visit your state’s electricity board website and enter your service number or account ID to check the bill."
+      "query": "How to check electricity bill?",
+      "response": "Visit your state electricity board website and enter your consumer number to view your bill."
     },
     {
       "query": "How to get caste certificate online?",
-      "response": "Visit your state government's MeeSeva or eDistrict portal to apply for caste certificate online."
+      "response": "Apply for caste certificate at your state's **MeeSeva** or **eDistrict** portal."
+    },
+    {
+      "query": "What is the Spandana portal?",
+      "response": "Spandana (https://spandana.ap.gov.in) is Andhra Pradesh’s citizen grievance redressal portal."
+    },
+    {
+      "query": "What is the helpline number in AP?",
+      "response": "**AP Citizen Helplines:**\n- 1100 – General Grievances\n- 108 – Ambulance\n- 104 – Health\n- 100 – Police"
     }
   ]
 }
