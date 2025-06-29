@@ -17,6 +17,8 @@ if "username" not in st.session_state:
     st.session_state["username"] = ""
 if "remember" not in st.session_state:
     st.session_state["remember"] = False
+if "logout_success" not in st.session_state:
+    st.session_state["logout_success"] = False
 
 # ✅ Sidebar Title
 st.sidebar.markdown("## 📚 Navigation")
@@ -41,9 +43,15 @@ if st.session_state["authenticated"]:
         st.session_state["authenticated"] = False
         st.session_state["username"] = ""
         st.session_state["remember"] = False
-        st.success("✅ Logged out successfully.")
+        st.session_state["logout_success"] = True
         st.session_state["page"] = "Home"
         st.rerun()
+()
+
+# ✅ Show logout success message after logout once
+if st.session_state["logout_success"]:
+    st.success("✅ Logged out successfully.")
+    st.session_state["logout_success"] = False
 
 # ✅ Routing to Pages
 if st.session_state["page"] == "Home":
