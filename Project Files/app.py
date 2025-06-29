@@ -34,7 +34,7 @@ nav_button("💬 Chat", "Chat")
 nav_button("📊 Dashboard", "Dashboard")
 nav_button("🔐 Login", "Login")
 
-# ✅ Show Logout Only After Login
+# ✅ Show Logout Button in Sidebar Only After Login
 if st.session_state["authenticated"]:
     st.sidebar.markdown("---")
     st.sidebar.success(f"👋 Logged in as: {st.session_state['username']}")
@@ -46,14 +46,13 @@ if st.session_state["authenticated"]:
         st.session_state["logout_success"] = True
         st.session_state["page"] = "Home"
         st.rerun()
-()
 
-# ✅ Show logout success message after logout once
-if st.session_state["logout_success"]:
+# ✅ Show logout success message only on Home page
+if st.session_state.get("logout_success", False) and st.session_state["page"] == "Home":
     st.success("✅ Logged out successfully.")
     st.session_state["logout_success"] = False
 
-# ✅ Routing to Pages
+# ✅ Routing to Pages (Login page will not show logout itself)
 if st.session_state["page"] == "Home":
     Home.home_page()
 elif st.session_state["page"] == "About":
