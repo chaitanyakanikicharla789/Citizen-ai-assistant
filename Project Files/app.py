@@ -5,60 +5,54 @@ import Chat
 import Dashboard
 import Login
 
-# ✅ Step 1: Set page config
+# ✅ Set page config
 st.set_page_config(page_title="Citizen AI Assistant", layout="wide")
 
-# ✅ Step 2: Initialize session state
+# ✅ Maintain current page in session
 if "page" not in st.session_state:
     st.session_state["page"] = "Home"
 
-# ✅ Step 3: Inject CSS for box-style buttons
+# ✅ Inject EXACT CSS matching your Get Started button
 st.markdown("""
     <style>
-    .sidebar-button {
+    .get-started-button {
         display: block;
-        padding: 0.6rem 1rem;
-        margin-bottom: 0.5rem;
-        text-align: center;
-        background-color: #ffffff;
-        border: 2px solid #1a73e8;
+        width: 100%;
+        padding: 10px 16px;
+        margin: 8px 0;
+        background-color: white;
         color: #1a73e8;
-        font-weight: bold;
-        border-radius: 10px;
+        border: 2px solid #1a73e8;
+        border-radius: 12px;
+        font-weight: 600;
+        text-align: center;
         text-decoration: none;
-        transition: 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 1px 2px 5px rgba(0,0,0,0.05);
     }
-    .sidebar-button:hover {
+    .get-started-button:hover {
         background-color: #e8f0fe;
-    }
-    .sidebar-button.selected {
-        background-color: #1a73e8;
-        color: white;
+        color: #1a73e8;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# ✅ Step 4: Sidebar Title
+# ✅ Sidebar title
 st.sidebar.markdown("## 📚 Navigation")
 
-# ✅ Step 5: Define navigation options
-pages = {
-    "🏠 Home": "Home",
-    "ℹ️ About": "About",
-    "💬 Chat": "Chat",
-    "📊 Dashboard": "Dashboard",
-    "🔐 Login": "Login"
-}
+# ✅ Navigation button creator (HTML styled exactly like Get Started)
+def nav_link(label, page_key):
+    if st.sidebar.button(label, key=page_key):
+        st.session_state["page"] = page_key
 
-# ✅ Step 6: Display buttons in sidebar (as links with CSS styling)
-for label, name in pages.items():
-    is_selected = st.session_state["page"] == name
-    button_style = "sidebar-button selected" if is_selected else "sidebar-button"
-    button_html = f'<a href="#" class="{button_style}" onclick="window.location.reload();">{label}</a>'
-    if st.sidebar.markdown(button_html, unsafe_allow_html=True):
-        st.session_state["page"] = name
+# ✅ Sidebar buttons (styled like Get Started)
+nav_link("🏠 Home", "Home")
+nav_link("ℹ️ About", "About")
+nav_link("💬 Chat", "Chat")
+nav_link("📊 Dashboard", "Dashboard")
+nav_link("🔐 Login", "Login")
 
-# ✅ Step 7: Route to selected page
+# ✅ Routing logic
 if st.session_state["page"] == "Home":
     Home.home_page()
 elif st.session_state["page"] == "About":
