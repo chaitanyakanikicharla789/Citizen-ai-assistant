@@ -5,24 +5,42 @@ import Chat
 import Dashboard
 import Login
 
+# Page config
 st.set_page_config(page_title="Citizen AI Assistant", layout="wide")
 
-# ✅ Maintain page state to support "Get Started" button
+# ✅ Maintain session state to handle navigation & Get Started button
 if "page" not in st.session_state:
     st.session_state["page"] = "Home"
 
-# Sidebar selection
-page = st.sidebar.radio("🔽 Navigate", ["Home", "About", "Chat", "Dashboard", "Login"],
-                        index=["Home", "About", "Chat", "Dashboard", "Login"].index(st.session_state["page"]))
+# ✅ Sidebar Title
+st.sidebar.markdown("## 📚 Navigation")
 
-# Display the selected page
-if page == "Home":
+# Sidebar with emoji-based options
+navigation_options = {
+    "🏠 Home": "Home",
+    "ℹ️ About": "About",
+    "💬 Chat": "Chat",
+    "📊 Dashboard": "Dashboard",
+    "🔐 Login": "Login"
+}
+
+# Find default index based on current session page
+default_index = list(navigation_options.values()).index(st.session_state["page"])
+
+# Show radio in sidebar
+selected_label = st.sidebar.radio("Go to:", list(navigation_options.keys()), index=default_index)
+
+# Update session state based on selection
+st.session_state["page"] = navigation_options[selected_label]
+
+# ✅ Routing to actual page
+if st.session_state["page"] == "Home":
     Home.home_page()
-elif page == "About":
+elif st.session_state["page"] == "About":
     About.about_page()
-elif page == "Chat":
+elif st.session_state["page"] == "Chat":
     Chat.chat_page()
-elif page == "Dashboard":
+elif st.session_state["page"] == "Dashboard":
     Dashboard.dashboard_page()
-elif page == "Login":
+elif st.session_state["page"] == "Login":
     Login.login_page()
