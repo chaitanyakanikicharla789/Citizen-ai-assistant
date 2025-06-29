@@ -5,54 +5,47 @@ import Chat
 import Dashboard
 import Login
 
-# ✅ Set page config
+# ✅ Page Config
 st.set_page_config(page_title="Citizen AI Assistant", layout="wide")
 
-# ✅ Maintain current page in session
+# ✅ Session State Defaults
 if "page" not in st.session_state:
     st.session_state["page"] = "Home"
+if "authenticated" not in st.session_state:
+    st.session_state["authenticated"] = False
+if "username" not in st.session_state:
+    st.session_state["username"] = ""
+if "remember" not in st.session_state:
+    st.session_state["remember"] = False
 
-# ✅ Inject EXACT CSS matching your Get Started button
-st.markdown("""
-    <style>
-    .get-started-button {
-        display: block;
-        width: 100%;
-        padding: 10px 16px;
-        margin: 8px 0;
-        background-color: white;
-        color: #1a73e8;
-        border: 2px solid #1a73e8;
-        border-radius: 12px;
-        font-weight: 600;
-        text-align: center;
-        text-decoration: none;
-        transition: all 0.2s ease-in-out;
-        box-shadow: 1px 2px 5px rgba(0,0,0,0.05);
-    }
-    .get-started-button:hover {
-        background-color: #e8f0fe;
-        color: #1a73e8;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-# ✅ Sidebar title
+# ✅ Sidebar Title
 st.sidebar.markdown("## 📚 Navigation")
 
-# ✅ Navigation button creator (HTML styled exactly like Get Started)
-def nav_link(label, page_key):
-    if st.sidebar.button(label, key=page_key):
-        st.session_state["page"] = page_key
+# ✅ Sidebar Navigation Buttons
+def nav_button(label, page_name):
+    if st.sidebar.button(label):
+        st.session_state["page"] = page_name
 
-# ✅ Sidebar buttons (styled like Get Started)
-nav_link("🏠 Home", "Home")
-nav_link("ℹ️ About", "About")
-nav_link("💬 Chat", "Chat")
-nav_link("📊 Dashboard", "Dashboard")
-nav_link("🔐 Login", "Login")
+nav_button("🏠 Home", "Home")
+nav_button("ℹ️ About", "About")
+nav_button("💬 Chat", "Chat")
+nav_button("📊 Dashboard", "Dashboard")
+nav_button("🔐 Login", "Login")
 
-# ✅ Routing logic
+# ✅ Show Logout Only After Login
+if st.session_state["authenticated"]:
+    st.sidebar.markdown("---")
+    st.sidebar.success(f"👋 Logged in as: {st.session_state['username']}")
+
+    if st.sidebar.button("🚪 Logout"):
+        st.session_state["authenticated"] = False
+        st.session_state["username"] = ""
+        st.session_state["remember"] = False
+        st.success("✅ Logged out successfully.")
+        st.session_state["page"] = "Home"
+        st.rerun()
+
+# ✅ Routing to Pages
 if st.session_state["page"] == "Home":
     Home.home_page()
 elif st.session_state["page"] == "About":
