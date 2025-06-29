@@ -5,47 +5,44 @@ import Chat
 import Dashboard
 import Login
 
-# ✅ STEP 1: Inject CSS FIRST
+# ✅ Step 1: Set page config
+st.set_page_config(page_title="Citizen AI Assistant", layout="wide")
+
+# ✅ Step 2: Initialize session state
+if "page" not in st.session_state:
+    st.session_state["page"] = "Home"
+
+# ✅ Step 3: Inject CSS for box-style buttons
 st.markdown("""
     <style>
-    /* Sidebar radio buttons → styled like boxes */
-    div[data-baseweb="radio"] > div {
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-    }
-    div[data-baseweb="radio"] label {
+    .sidebar-button {
+        display: block;
+        padding: 0.6rem 1rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        background-color: #ffffff;
         border: 2px solid #1a73e8;
-        border-radius: 0.75rem;
-        padding: 0.55rem 1rem;
-        font-weight: 600;
         color: #1a73e8;
-        background: #ffffff;
-        transition: all 120ms ease-in-out;
-        cursor: pointer;
+        font-weight: bold;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
     }
-    div[data-baseweb="radio"] label:hover {
-        background: #e8f0fe;
+    .sidebar-button:hover {
+        background-color: #e8f0fe;
     }
-    div[data-baseweb="radio"] input:checked + div {
-        background: #1a73e8 !important;
-        color: #ffffff !important;
+    .sidebar-button.selected {
+        background-color: #1a73e8;
+        color: white;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# ✅ STEP 2: Set page config
-st.set_page_config(page_title="Citizen AI Assistant", layout="wide")
-
-# ✅ STEP 3: Maintain session state for navigation
-if "page" not in st.session_state:
-    st.session_state["page"] = "Home"
-
-# ✅ STEP 4: Sidebar title
+# ✅ Step 4: Sidebar Title
 st.sidebar.markdown("## 📚 Navigation")
 
-# ✅ STEP 5: Define navigation options (with emoji labels)
-navigation_options = {
+# ✅ Step 5: Define navigation options
+pages = {
     "🏠 Home": "Home",
     "ℹ️ About": "About",
     "💬 Chat": "Chat",
@@ -53,16 +50,15 @@ navigation_options = {
     "🔐 Login": "Login"
 }
 
-# ✅ STEP 6: Get default index for sidebar
-default_index = list(navigation_options.values()).index(st.session_state["page"])
+# ✅ Step 6: Display buttons in sidebar (as links with CSS styling)
+for label, name in pages.items():
+    is_selected = st.session_state["page"] == name
+    button_style = "sidebar-button selected" if is_selected else "sidebar-button"
+    button_html = f'<a href="#" class="{button_style}" onclick="window.location.reload();">{label}</a>'
+    if st.sidebar.markdown(button_html, unsafe_allow_html=True):
+        st.session_state["page"] = name
 
-# ✅ STEP 7: Show radio button sidebar menu
-selected_label = st.sidebar.radio("Go to:", list(navigation_options.keys()), index=default_index)
-
-# ✅ STEP 8: Update current page
-st.session_state["page"] = navigation_options[selected_label]
-
-# ✅ STEP 9: Route to selected page
+# ✅ Step 7: Route to selected page
 if st.session_state["page"] == "Home":
     Home.home_page()
 elif st.session_state["page"] == "About":
