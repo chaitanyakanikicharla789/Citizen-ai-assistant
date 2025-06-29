@@ -5,10 +5,10 @@ import Chat
 import Dashboard
 import Login
 
-# ✅ STEP 1: Inject CSS FIRST (before set_page_config)
+# ✅ STEP 1: Inject CSS FIRST
 st.markdown("""
     <style>
-    /* --- Sidebar radio → Box-style buttons --- */
+    /* Sidebar radio buttons → styled like boxes */
     div[data-baseweb="radio"] > div {
         display: flex;
         flex-direction: column;
@@ -29,22 +29,22 @@ st.markdown("""
     }
     div[data-baseweb="radio"] input:checked + div {
         background: #1a73e8 !important;
-        color: #ffffff  !important;
+        color: #ffffff !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# ✅ STEP 2: Set page config AFTER CSS
+# ✅ STEP 2: Set page config
 st.set_page_config(page_title="Citizen AI Assistant", layout="wide")
 
-# ✅ STEP 3: Session state to handle page switching
+# ✅ STEP 3: Maintain session state for navigation
 if "page" not in st.session_state:
     st.session_state["page"] = "Home"
 
-# ✅ STEP 4: Sidebar Title
+# ✅ STEP 4: Sidebar title
 st.sidebar.markdown("## 📚 Navigation")
 
-# ✅ STEP 5: Navigation options with emojis
+# ✅ STEP 5: Define navigation options (with emoji labels)
 navigation_options = {
     "🏠 Home": "Home",
     "ℹ️ About": "About",
@@ -53,16 +53,16 @@ navigation_options = {
     "🔐 Login": "Login"
 }
 
-# ✅ STEP 6: Get default index for sidebar radio
+# ✅ STEP 6: Get default index for sidebar
 default_index = list(navigation_options.values()).index(st.session_state["page"])
 
-# ✅ STEP 7: Show sidebar radio menu (styled)
+# ✅ STEP 7: Show radio button sidebar menu
 selected_label = st.sidebar.radio("Go to:", list(navigation_options.keys()), index=default_index)
 
-# ✅ STEP 8: Update selected page in session
+# ✅ STEP 8: Update current page
 st.session_state["page"] = navigation_options[selected_label]
 
-# ✅ STEP 9: Routing to selected page
+# ✅ STEP 9: Route to selected page
 if st.session_state["page"] == "Home":
     Home.home_page()
 elif st.session_state["page"] == "About":
